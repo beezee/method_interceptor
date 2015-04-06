@@ -38,7 +38,7 @@ p_transformers = [:get, :post, :put, :delete].map do |method|
   [[method, :headers], add_auth_header]
 end
 r_transformers = [:get, :post, :put, :delete].map do |method|
-  [method, JSON.method(:parse)]
+  [method, ->(x) { JSON.parse(x) }]
 end
 rc = ParameterTransformers::Proxy.new(RestClient, Hash[p_transformers], Hash[r_transformers])
 
