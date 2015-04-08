@@ -1,4 +1,4 @@
-# ParameterTransformers
+# MethodInterceptor
 
 This gem provides a proxy which can encapsulate transformers to be
 applied to given method/parameter combinations before the target
@@ -13,7 +13,7 @@ library code.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'parameter_transformers'
+gem 'method_interceptor'
 ```
 
 And then execute:
@@ -22,7 +22,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install parameter_transformers
+    $ gem install method_interceptor
 
 ## Usage
 
@@ -40,7 +40,7 @@ end
 r_transformers = [:get, :post, :put, :delete].map do |method|
   [method, ->(x) { JSON.parse(x) }]
 end
-rc = ParameterTransformers::Proxy.new(RestClient, Hash[p_transformers], Hash[r_transformers])
+rc = MethodInterceptor::Proxy.new(RestClient, Hash[p_transformers], Hash[r_transformers])
 
 # automatically adds {'AUTH-HEADER' => 'key'} to headers on all calls now
 # and automatically parses responses as json
@@ -61,7 +61,7 @@ response
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/parameter_transformers/fork )
+1. Fork it ( https://github.com/[my-github-username]/method_interceptor/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
