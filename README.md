@@ -30,7 +30,7 @@ Here's an example of using the proxy to consistently apply an authentication hea
 
 ```ruby
 require 'rest_client'
-require 'parameter_transformers'
+require 'method_interceptor'
 require 'json'
 
 add_auth_header = ->(headers) { (headers || {}).merge('AUTH-HEADER' => 'key') }
